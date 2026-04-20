@@ -101,6 +101,40 @@ Backend:
 npm --prefix server start
 ```
 
+## Deploy to Vercel (recommended)
+
+This repo supports deploying the frontend and API together on Vercel.
+
+### 1) Push to GitHub
+Vercel deploys from a Git repo, so make sure your latest changes are pushed.
+
+### 2) Create a Vercel project
+1. In Vercel, click **New Project** → import your GitHub repo.
+2. Framework preset: **Vite** (Vercel usually detects this).
+3. Build command: `npm run build`
+4. Output directory: `dist`
+
+### 3) Add Environment Variables in Vercel
+
+Frontend (build-time; must start with `VITE_`):
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_STORAGE_BUCKET`
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`
+- `VITE_FIREBASE_APP_ID`
+
+Backend (serverless function runtime; do NOT prefix with `VITE_`):
+- `OPENAI_API_KEY`
+- `OPENAI_MODEL` (optional, default: `gpt-4.1-mini`)
+
+Notes:
+- You usually do **not** need to set `VITE_API_BASE` on Vercel; it defaults to `/api`.
+- The deployed API endpoint will be `https://<your-domain>/api/analyze`.
+
+### 4) Deploy
+Click **Deploy**. After it finishes, open the Vercel URL and try analyzing a meal.
+
 ## Notes
 - Image upload is supported for **preview** in the UI. The backend receives an optional `imageDataUrl`, but currently prioritizes the text description (to avoid claiming visual certainty). If you want full image analysis, update the server prompt to use a vision-capable model and pass image content accordingly.
 - Meals are stored in Firestore under `meals/`. Daily aggregates are stored under `nutrition_logs/` and updated transactionally whenever meals are added/edited/deleted.
