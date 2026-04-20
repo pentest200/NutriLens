@@ -1,0 +1,77 @@
+/* ── SignupPage ───────────────────────────────────────── */
+.nl-signup-root {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--nl-bg);
+  padding: 40px 24px;
+}
+
+.nl-signup-card {
+  width: 100%;
+  max-width: 440px;
+}
+
+.nl-signup-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  justify-content: center;
+}
+
+.nl-signup-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--nl-accent);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 4px 12px var(--nl-accent-glow);
+}
+
+.nl-signup-logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.nl-signup-heading {
+  margin-bottom: 24px;
+}
+
+.nl-signup-heading h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin: 0 0 6px;
+}
+
+.nl-signup-heading p {
+  font-size: 14px;
+  color: var(--nl-text-sub);
+  margin: 0;
+}
+
+.nl-signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nl-signup-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--nl-text-muted);
+}
+
+.nl-signup-footer a {
+  color: var(--nl-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.nl-signup-footer a:hover { text-decoration: underline; }

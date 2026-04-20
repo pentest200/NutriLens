@@ -1,0 +1,34 @@
+/* ── ErrorBanner ──────────────────────────────────────── */
+.nl-error-banner {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: var(--nl-radius);
+  background: var(--nl-danger-light);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  animation: nl-fade-up 0.25s ease both;
+}
+
+.nl-error-icon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.nl-error-content {}
+
+.nl-error-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--nl-danger);
+}
+
+.nl-error-message {
+  font-size: 13px;
+  color: var(--nl-danger);
+  opacity: 0.85;
+  margin-top: 3px;
+  white-space: pre-line;
+}

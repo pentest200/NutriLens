@@ -1,0 +1,222 @@
+/* ── AnalyzerPage ─────────────────────────────────────── */
+.nl-analyzer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .nl-analyzer-grid { grid-template-columns: 1fr; }
+}
+
+/* Input card */
+.nl-input-card { padding: 28px; }
+
+.nl-card-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--nl-text-muted);
+  margin-bottom: 14px;
+}
+
+.nl-image-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nl-image-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.nl-image-preview {
+  position: relative;
+  border-radius: var(--nl-radius);
+  overflow: hidden;
+  border: 1px solid var(--nl-border);
+}
+
+.nl-image-preview img {
+  display: block;
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+}
+
+.nl-image-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.nl-action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding-top: 4px;
+}
+
+/* Result card */
+.nl-result-card {
+  padding: 28px;
+  position: relative;
+}
+
+.nl-result-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 200px;
+  text-align: center;
+}
+
+.nl-result-empty-icon {
+  font-size: 40px;
+  opacity: 0.25;
+}
+
+.nl-result-empty-text {
+  font-size: 14px;
+  color: var(--nl-text-muted);
+}
+
+/* Macro rows */
+.nl-macro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.nl-macro-item {
+  background: var(--nl-surface-2);
+  border-radius: var(--nl-radius);
+  padding: 16px 18px;
+  border: 1px solid var(--nl-border);
+}
+
+.nl-macro-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--nl-text-muted);
+  margin-bottom: 4px;
+}
+
+.nl-macro-value {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--nl-mono);
+  letter-spacing: -0.02em;
+  color: var(--nl-text-primary);
+}
+
+.nl-macro-unit {
+  font-size: 12px;
+  color: var(--nl-text-muted);
+  margin-left: 2px;
+  font-family: var(--nl-font);
+  font-weight: 500;
+}
+
+.nl-macro-calories {
+  grid-column: 1 / -1;
+  background: var(--nl-accent-light);
+  border-color: rgba(34,197,94,0.3);
+}
+.dark .nl-macro-calories {
+  background: rgba(34,197,94,0.1);
+  border-color: rgba(34,197,94,0.2);
+}
+
+.nl-macro-calories .nl-macro-value {
+  color: var(--nl-accent);
+  font-size: 28px;
+}
+
+/* Health score */
+.nl-health-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--nl-surface-2);
+  border-radius: var(--nl-radius);
+  border: 1px solid var(--nl-border);
+  margin-bottom: 20px;
+}
+
+.nl-health-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--nl-text-sub);
+}
+
+.nl-health-value {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--nl-mono);
+  color: var(--nl-accent);
+}
+
+/* Suggestions */
+.nl-suggestions { margin-bottom: 20px; }
+
+.nl-suggestions-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--nl-text-primary);
+  margin-bottom: 10px;
+}
+
+.nl-suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.nl-suggestions-list li {
+  display: flex;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--nl-text-sub);
+  line-height: 1.5;
+}
+
+.nl-suggestion-bullet {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--nl-accent-light);
+  color: var(--nl-accent);
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-weight: 700;
+}
+.dark .nl-suggestion-bullet {
+  background: rgba(34,197,94,0.12);
+}
+
+/* Skeleton loading states */
+.nl-result-skeletons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

@@ -1,0 +1,12 @@
+/* ── Skeleton ─────────────────────────────────────────── */
+.nl-skeleton {
+  border-radius: var(--nl-radius);
+  background: linear-gradient(
+    90deg,
+    var(--nl-surface-2) 25%,
+    var(--nl-border) 50%,
+    var(--nl-surface-2) 75%
+  );
+  background-size: 400px 100%;
+  animation: nl-shimmer 1.5s ease-in-out infinite;
+}

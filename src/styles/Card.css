@@ -1,0 +1,23 @@
+/* ── Card ─────────────────────────────────────────────── */
+.nl-card {
+  background: var(--nl-surface);
+  border: 1px solid var(--nl-border);
+  border-radius: var(--nl-radius-lg);
+  padding: 24px;
+  box-shadow: var(--nl-shadow-sm);
+  transition: box-shadow var(--nl-transition), border-color var(--nl-transition);
+}
+
+.nl-card-hover:hover {
+  box-shadow: var(--nl-shadow);
+  border-color: var(--nl-border-2);
+}
+
+.nl-card-accent {
+  border-color: var(--nl-accent-light);
+  background: linear-gradient(135deg, var(--nl-surface) 70%, var(--nl-accent-light));
+}
+.dark .nl-card-accent {
+  border-color: rgba(34, 197, 94, 0.2);
+  background: linear-gradient(135deg, var(--nl-surface) 70%, rgba(34,197,94,0.06));
+}

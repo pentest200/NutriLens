@@ -1,0 +1,107 @@
+/* ── Button ───────────────────────────────────────────── */
+.nl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--nl-font);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: none;
+  border-radius: var(--nl-radius);
+  cursor: pointer;
+  transition:
+    background var(--nl-transition),
+    color var(--nl-transition),
+    box-shadow var(--nl-transition),
+    transform var(--nl-transition),
+    opacity var(--nl-transition);
+  user-select: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.nl-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.nl-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Ripple shimmer on primary */
+.nl-btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 60%, transparent 80%);
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+}
+.nl-btn-primary:hover::before {
+  transform: translateX(100%);
+}
+
+/* Sizes */
+.nl-btn-sm  { height: 36px; padding: 0 14px; font-size: 13px; border-radius: var(--nl-radius-sm); }
+.nl-btn-md  { height: 42px; padding: 0 20px; font-size: 14px; }
+.nl-btn-lg  { height: 50px; padding: 0 28px; font-size: 15px; }
+
+/* Variants */
+.nl-btn-primary {
+  background: var(--nl-accent);
+  color: #fff;
+  box-shadow: 0 2px 8px var(--nl-accent-glow);
+}
+.nl-btn-primary:hover:not(:disabled) {
+  background: var(--nl-accent-hover);
+  box-shadow: 0 4px 16px var(--nl-accent-glow);
+}
+
+.nl-btn-secondary {
+  background: var(--nl-surface-2);
+  color: var(--nl-text-primary);
+  border: 1px solid var(--nl-border);
+}
+.nl-btn-secondary:hover:not(:disabled) {
+  background: var(--nl-border);
+}
+
+.nl-btn-ghost {
+  background: transparent;
+  color: var(--nl-text-sub);
+}
+.nl-btn-ghost:hover:not(:disabled) {
+  background: var(--nl-surface-2);
+  color: var(--nl-text-primary);
+}
+
+.nl-btn-danger {
+  background: var(--nl-danger);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.25);
+}
+.nl-btn-danger:hover:not(:disabled) {
+  background: #dc2626;
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.35);
+}
+
+/* Loading spinner */
+.nl-btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: nl-spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+.nl-btn-secondary .nl-btn-spinner,
+.nl-btn-ghost .nl-btn-spinner {
+  border-color: rgba(0,0,0,0.15);
+  border-top-color: var(--nl-accent);
+}

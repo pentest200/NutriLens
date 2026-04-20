@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    match /meals/{mealId} {
+      allow create: if signedIn() && request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if signedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    match /meal_templates/{templateId} {
+      allow create: if signedIn() && request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if signedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    match /nutrition_logs/{logId} {
+      // Note: Dashboard reads today's log doc even before it exists.
+      // For a missing doc, `resource` is null, so we must authorize via the doc ID.
+      // Our app uses logId = "{uid}_{dateKey}".
+      allow create: if signedIn()
+        && request.resource.data.userId == request.auth.uid
+        && logId.matches('^' + request.auth.uid + '_');
+
+      allow read: if signedIn()
+        && (logId.matches('^' + request.auth.uid + '_')
+          || (resource != null && resource.data.userId == request.auth.uid));
+
+      allow update, delete: if signedIn() && resource.data.userId == request.auth.uid;
+    }
+  }
+}

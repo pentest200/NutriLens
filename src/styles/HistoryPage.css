@@ -1,0 +1,214 @@
+/* ── HistoryPage ──────────────────────────────────────── */
+.nl-filter-card {
+  padding: 24px 28px;
+}
+
+.nl-template-card {
+  padding: 24px 28px;
+}
+
+.nl-template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nl-template-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid var(--nl-border);
+  background: var(--nl-surface-2);
+  border-radius: var(--nl-radius-sm);
+  padding: 12px;
+}
+
+.nl-template-info {
+  min-width: 0;
+}
+
+.nl-template-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--nl-text-primary);
+}
+
+.nl-template-macros {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--nl-text-muted);
+}
+
+.nl-template-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nl-filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 480px) {
+  .nl-filter-grid { grid-template-columns: 1fr; }
+  .nl-template-item { flex-direction: column; align-items: flex-start; }
+}
+
+/* Meal list */
+.nl-meal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nl-meal-card {
+  padding: 24px 28px;
+  animation: nl-fade-up 0.3s ease both;
+  transition: box-shadow var(--nl-transition), border-color var(--nl-transition);
+}
+
+.nl-meal-card:hover {
+  box-shadow: var(--nl-shadow);
+  border-color: var(--nl-border-2);
+}
+
+.nl-meal-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.nl-meal-meta {}
+
+.nl-meal-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--nl-text-primary);
+  margin-bottom: 4px;
+}
+
+.nl-meal-time {
+  font-size: 12px;
+  color: var(--nl-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nl-meal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Macros row */
+.nl-meal-macros {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 600px) {
+  .nl-meal-macros { grid-template-columns: repeat(3, 1fr); }
+}
+
+.nl-meal-macro {
+  background: var(--nl-surface-2);
+  border-radius: var(--nl-radius-sm);
+  padding: 12px 14px;
+  border: 1px solid var(--nl-border);
+  text-align: center;
+}
+
+.nl-meal-macro-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--nl-text-muted);
+  margin-bottom: 4px;
+}
+
+.nl-meal-macro-val {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--nl-mono);
+  color: var(--nl-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.nl-meal-macro-unit {
+  font-size: 10px;
+  color: var(--nl-text-muted);
+  font-family: var(--nl-font);
+}
+
+.nl-meal-macro-calories .nl-meal-macro-val {
+  color: var(--nl-accent);
+}
+
+/* Edit form */
+.nl-edit-form {
+  border-top: 1px solid var(--nl-border);
+  padding-top: 20px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: nl-fade-up 0.25s ease both;
+}
+
+.nl-edit-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.nl-edit-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .nl-edit-grid-2 { grid-template-columns: 1fr; }
+  .nl-edit-grid-3 { grid-template-columns: 1fr; }
+}
+
+.nl-edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Empty state */
+.nl-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 220px;
+  text-align: center;
+  border: 2px dashed var(--nl-border);
+  border-radius: var(--nl-radius-lg);
+  padding: 40px;
+}
+
+.nl-empty-icon {
+  font-size: 42px;
+  opacity: 0.2;
+}
+
+.nl-empty-text {
+  font-size: 14px;
+  color: var(--nl-text-muted);
+  max-width: 280px;
+}
