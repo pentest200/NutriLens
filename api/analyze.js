@@ -41,21 +41,50 @@ async function readJsonBody(req) {
     if (parsed.ok) return parsed.value
   }
 
+  // In some serverless environments the request stream may already be consumed.
+  // If it has already ended and no parsed body is available, treat it as empty.
+  if (req.readableEnded || req.complete) return null
+
   const chunks = []
   let total = 0
 
   await new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      reject(new Error('Timed out reading request body'))
+      try {
+        req.destroy()
+      } catch {
+        // ignore
+      }
+    }, 5000)
+
+    const cleanup = () => clearTimeout(timeout)
+
+    req.on('aborted', () => {
+      cleanup()
+      reject(new Error('Request aborted'))
+    })
+
     req.on('data', (chunk) => {
       total += chunk.length
       if (total > MAX_BODY_BYTES) {
+        cleanup()
         reject(new Error('Request body too large'))
         req.destroy()
         return
       }
       chunks.push(chunk)
     })
-    req.on('end', resolve)
-    req.on('error', reject)
+
+    req.on('end', () => {
+      cleanup()
+      resolve()
+    })
+
+    req.on('error', (err) => {
+      cleanup()
+      reject(err)
+    })
   })
 
   const raw = Buffer.concat(chunks).toString('utf8').trim()
@@ -78,7 +107,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const body = await readJsonBody(req)
+  let body = null
+  try {
+    body = await readJsonBody(req)
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Invalid request body'
+    const status = message.includes('too large') ? 413 : 400
+    return res.status(status).json({ error: message })
+  }
   const parsedReq = AnalyzeRequestSchema.safeParse(body)
   if (!parsedReq.success) {
     return res.status(400).json({

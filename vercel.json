@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "api/analyze.js": {
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
